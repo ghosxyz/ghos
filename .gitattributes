@@ -1,0 +1,27 @@
+* text=auto eol=lf
+
+*.rs text eol=lf
+*.ts text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg binary
+*.so binary
+*.bin binary
+
+*.ts linguist-language=TypeScript
+*.rs linguist-language=Rust
+*.py linguist-language=Python
+docs/* linguist-documentation
+tests/fixtures/* linguist-generated
+idl/*.json linguist-generated
+sdk/dist/* linguist-generated
