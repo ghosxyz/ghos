@@ -1,0 +1,51 @@
+{
+  "name": "ghos",
+  "private": true,
+  "version": "0.4.1",
+  "description": "Solana privacy OS built on Token-2022 Confidential Balances",
+  "homepage": "https://ghos.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghosxyz/ghos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ghosxyz/ghos/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "ghos.xyz core",
+    "url": "https://ghos.xyz"
+  },
+  "workspaces": [
+    "sdk"
+  ],
+  "scripts": {
+    "build": "anchor build",
+    "test": "anchor test",
+    "test:unit": "yarn workspace @ghos/sdk test",
+    "test:integration": "ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts",
+    "lint": "prettier --check \"tests/**/*.ts\" \"sdk/src/**/*.ts\" \"examples/**/*.ts\"",
+    "format": "prettier --write \"tests/**/*.ts\" \"sdk/src/**/*.ts\" \"examples/**/*.ts\"",
+    "devnet:seed": "ts-node scripts/devnet_seed.ts"
+  },
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.30.1",
+    "@solana/spl-token": "^0.4.8",
+    "@solana/spl-token-metadata": "^0.1.6",
+    "@solana/web3.js": "^1.95.3",
+    "@types/bn.js": "^5.1.6",
+    "@types/chai": "^4.3.17",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.5.4",
+    "bn.js": "^5.2.1",
+    "chai": "^4.5.0",
+    "mocha": "^10.7.3",
+    "prettier": "^3.3.3",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
