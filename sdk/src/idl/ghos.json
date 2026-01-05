@@ -1,0 +1,519 @@
+{
+  "version": "0.4.1",
+  "name": "ghos",
+  "address": "EnKo8EbfJkani8UePTmAVPzdCZM8vMEYYkjTar4fwBPg",
+  "metadata": {
+    "name": "ghos",
+    "version": "0.4.1",
+    "spec": "0.1.0",
+    "description": "Solana privacy OS built on Token-2022 Confidential Balances"
+  },
+  "instructions": [
+    {
+      "name": "initialize",
+      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "dustFreeUnit", "type": "u64" },
+        { "name": "burnerTtlMin", "type": "i64" },
+        { "name": "burnerTtlMax", "type": "i64" },
+        { "name": "burnerRegistryCap", "type": "u16" },
+        { "name": "mixMinParticipants", "type": "u8" },
+        { "name": "mixMaxParticipants", "type": "u8" },
+        { "name": "mixRevealWindow", "type": "i64" },
+        { "name": "auditorCosignLamports", "type": "u64" }
+      ]
+    },
+    {
+      "name": "shield",
+      "discriminator": [39, 180, 221, 20, 117, 145, 215, 75],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "sourceAta", "isMut": true, "isSigner": false },
+        { "name": "destinationConfidentialAccount", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false },
+        { "name": "paddingVault", "isMut": true, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    },
+    {
+      "name": "confidentialTransfer",
+      "discriminator": [152, 219, 200, 10, 84, 8, 222, 91],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "sourceAccount", "isMut": true, "isSigner": false },
+        { "name": "destinationAccount", "isMut": true, "isSigner": false },
+        { "name": "destinationOwner", "isMut": false, "isSigner": false },
+        { "name": "rangeProofContext", "isMut": false, "isSigner": false },
+        { "name": "equalityProofContext", "isMut": false, "isSigner": false },
+        { "name": "auditorEntry", "isMut": false, "isSigner": false, "isOptional": true },
+        { "name": "ghosState", "isMut": false, "isSigner": false },
+        { "name": "zkTokenProofProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "proofRangeHandle", "type": "u32" },
+        { "name": "proofEqualityHandle", "type": "u32" },
+        { "name": "sourceCiphertext", "type": { "array": ["u8", 64] } },
+        { "name": "destCiphertext", "type": { "array": ["u8", 64] } }
+      ]
+    },
+    {
+      "name": "applyPending",
+      "discriminator": [210, 145, 33, 112, 87, 19, 171, 240],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "confidentialAccount", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [183, 18, 70, 156, 148, 109, 161, 34],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "sourceAccount", "isMut": true, "isSigner": false },
+        { "name": "destinationAta", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false },
+        { "name": "auditorEntry", "isMut": false, "isSigner": false, "isOptional": true },
+        { "name": "zkTokenProofProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" },
+        { "name": "requireAuditor", "type": "bool" }
+      ]
+    },
+    {
+      "name": "createBurner",
+      "discriminator": [76, 212, 77, 241, 57, 220, 163, 93],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "burnerEntry", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "nonce", "type": "u64" },
+        { "name": "burnerPubkey", "type": "publicKey" },
+        { "name": "ttlSeconds", "type": "i64" }
+      ]
+    },
+    {
+      "name": "destroyBurner",
+      "discriminator": [230, 71, 195, 232, 28, 120, 80, 19],
+      "accounts": [
+        { "name": "owner", "isMut": true, "isSigner": true },
+        { "name": "burnerEntry", "isMut": true, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "mixInit",
+      "discriminator": [92, 182, 4, 77, 128, 191, 33, 50],
+      "accounts": [
+        { "name": "host", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "round", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "roundNonce", "type": "u64" },
+        { "name": "denomination", "type": "u64" },
+        { "name": "capacity", "type": "u8" },
+        { "name": "commitWindowSeconds", "type": "i64" }
+      ]
+    },
+    {
+      "name": "mixCommit",
+      "discriminator": [9, 164, 73, 228, 66, 159, 112, 245],
+      "accounts": [
+        { "name": "participant", "isMut": true, "isSigner": true },
+        { "name": "round", "isMut": true, "isSigner": false },
+        { "name": "commitmentEntry", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "commitment", "type": { "array": ["u8", 32] } },
+        { "name": "index", "type": "u8" }
+      ]
+    },
+    {
+      "name": "mixReveal",
+      "discriminator": [208, 115, 92, 52, 33, 160, 231, 14],
+      "accounts": [
+        { "name": "participant", "isMut": true, "isSigner": true },
+        { "name": "round", "isMut": true, "isSigner": false },
+        { "name": "commitmentEntry", "isMut": true, "isSigner": false }
+      ],
+      "args": [
+        { "name": "revealSignal", "type": { "array": ["u8", 32] } },
+        { "name": "salt", "type": { "array": ["u8", 32] } }
+      ]
+    },
+    {
+      "name": "mixSettle",
+      "discriminator": [123, 34, 213, 77, 45, 160, 19, 202],
+      "accounts": [
+        { "name": "host", "isMut": true, "isSigner": true },
+        { "name": "round", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "participantIndices", "type": { "vec": "u8" } }
+      ]
+    },
+    {
+      "name": "auditorRegister",
+      "discriminator": [60, 9, 224, 121, 34, 83, 1, 11],
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "auditorEntry", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "auditorPubkey", "type": { "array": ["u8", 32] } },
+        { "name": "rotationCooldown", "type": "i64" }
+      ]
+    },
+    {
+      "name": "auditorRotate",
+      "discriminator": [58, 174, 246, 204, 53, 71, 98, 152],
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "mint", "isMut": false, "isSigner": false },
+        { "name": "auditorEntry", "isMut": true, "isSigner": false },
+        { "name": "ghosState", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "newAuditorPubkey", "type": { "array": ["u8", 32] } }
+      ]
+    },
+    {
+      "name": "configUpdate",
+      "discriminator": [80, 37, 109, 53, 217, 142, 9, 88],
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": true, "isSigner": false }
+      ],
+      "args": [
+        { "name": "field", "type": "u8" },
+        { "name": "u64Value", "type": { "option": "u64" } },
+        { "name": "i64Value", "type": { "option": "i64" } },
+        { "name": "boolValue", "type": { "option": "bool" } },
+        { "name": "u16Value", "type": { "option": "u16" } },
+        { "name": "u8Value", "type": { "option": "u8" } }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GhosConfig",
+      "discriminator": [144, 132, 85, 129, 208, 2, 70, 15],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "admin", "type": "publicKey" },
+          { "name": "version", "type": "u16" },
+          { "name": "paused", "type": "bool" },
+          { "name": "dustFreeUnit", "type": "u64" },
+          { "name": "burnerTtlMax", "type": "i64" },
+          { "name": "burnerTtlMin", "type": "i64" },
+          { "name": "burnerRegistryCap", "type": "u16" },
+          { "name": "mixMinParticipants", "type": "u8" },
+          { "name": "mixMaxParticipants", "type": "u8" },
+          { "name": "mixRevealWindow", "type": "i64" },
+          { "name": "auditorCosignLamports", "type": "u64" },
+          { "name": "lastUpdated", "type": "i64" },
+          { "name": "bump", "type": "u8" },
+          { "name": "reserved", "type": { "array": ["u8", 64] } }
+        ]
+      }
+    },
+    {
+      "name": "AuditorEntry",
+      "discriminator": [74, 167, 218, 29, 142, 108, 18, 205],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "mint", "type": "publicKey" },
+          { "name": "auditorPubkey", "type": { "array": ["u8", 32] } },
+          { "name": "registeredAt", "type": "i64" },
+          { "name": "lastRotatedAt", "type": "i64" },
+          { "name": "rotationCooldown", "type": "i64" },
+          { "name": "admin", "type": "publicKey" },
+          { "name": "bump", "type": "u8" },
+          { "name": "reserved", "type": { "array": ["u8", 16] } }
+        ]
+      }
+    },
+    {
+      "name": "BurnerAccount",
+      "discriminator": [221, 91, 240, 26, 1, 17, 142, 217],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "owner", "type": "publicKey" },
+          { "name": "burnerPubkey", "type": "publicKey" },
+          { "name": "createdAt", "type": "i64" },
+          { "name": "expiresAt", "type": "i64" },
+          { "name": "nonce", "type": "u64" },
+          { "name": "revoked", "type": "bool" },
+          { "name": "usageCount", "type": "u32" },
+          { "name": "bump", "type": "u8" },
+          { "name": "reserved", "type": { "array": ["u8", 16] } }
+        ]
+      }
+    },
+    {
+      "name": "MixRound",
+      "discriminator": [173, 9, 44, 228, 88, 5, 212, 173],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "mint", "type": "publicKey" },
+          { "name": "denomination", "type": "u64" },
+          { "name": "host", "type": "publicKey" },
+          { "name": "capacity", "type": "u8" },
+          { "name": "committed", "type": "u8" },
+          { "name": "revealed", "type": "u8" },
+          { "name": "phase", "type": { "defined": "MixPhase" } },
+          { "name": "openedAt", "type": "i64" },
+          { "name": "commitCloseAt", "type": "i64" },
+          { "name": "revealCloseAt", "type": "i64" },
+          { "name": "settledAt", "type": "i64" },
+          { "name": "bump", "type": "u8" },
+          { "name": "reserved", "type": { "array": ["u8", 32] } }
+        ]
+      }
+    },
+    {
+      "name": "MixCommitment",
+      "discriminator": [231, 173, 240, 127, 69, 3, 11, 217],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "round", "type": "publicKey" },
+          { "name": "participant", "type": "publicKey" },
+          { "name": "commitment", "type": { "array": ["u8", 32] } },
+          { "name": "revealed", "type": "bool" },
+          { "name": "revealSignal", "type": { "array": ["u8", 32] } },
+          { "name": "index", "type": "u8" },
+          { "name": "committedAt", "type": "i64" },
+          { "name": "revealedAt", "type": "i64" },
+          { "name": "bump", "type": "u8" },
+          { "name": "reserved", "type": { "array": ["u8", 16] } }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "MixPhase",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          { "name": "Open" },
+          { "name": "Commit" },
+          { "name": "Reveal" },
+          { "name": "Settling" },
+          { "name": "Settled" },
+          { "name": "Aborted" }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "ConfigInitialized",
+      "discriminator": [80, 161, 12, 187, 94, 112, 50, 71],
+      "fields": [
+        { "name": "admin", "type": "publicKey", "index": false },
+        { "name": "version", "type": "u16", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "ConfigUpdated",
+      "discriminator": [249, 72, 198, 114, 55, 129, 29, 31],
+      "fields": [
+        { "name": "admin", "type": "publicKey", "index": false },
+        { "name": "field", "type": "u8", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "ShieldExecuted",
+      "discriminator": [199, 4, 103, 55, 122, 190, 1, 222],
+      "fields": [
+        { "name": "owner", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "sourceAta", "type": "publicKey", "index": false },
+        { "name": "amountLamports", "type": "u64", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "ConfidentialTransferSubmitted",
+      "discriminator": [141, 29, 192, 67, 8, 145, 107, 13],
+      "fields": [
+        { "name": "sourceOwner", "type": "publicKey", "index": false },
+        { "name": "destinationOwner", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "proofContext", "type": "publicKey", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "PendingApplied",
+      "discriminator": [20, 117, 201, 42, 93, 3, 155, 216],
+      "fields": [
+        { "name": "owner", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "appliedCounter", "type": "u64", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "WithdrawExecuted",
+      "discriminator": [184, 44, 72, 182, 231, 10, 199, 3],
+      "fields": [
+        { "name": "owner", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "destinationAta", "type": "publicKey", "index": false },
+        { "name": "amount", "type": "u64", "index": false },
+        { "name": "auditorCosigned", "type": "bool", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "BurnerCreated",
+      "discriminator": [16, 204, 87, 242, 33, 118, 74, 199],
+      "fields": [
+        { "name": "owner", "type": "publicKey", "index": false },
+        { "name": "burner", "type": "publicKey", "index": false },
+        { "name": "ttlSeconds", "type": "i64", "index": false },
+        { "name": "expiresAt", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "BurnerDestroyed",
+      "discriminator": [171, 43, 4, 80, 178, 201, 63, 42],
+      "fields": [
+        { "name": "owner", "type": "publicKey", "index": false },
+        { "name": "burner", "type": "publicKey", "index": false },
+        { "name": "revokedAt", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "AuditorRegistered",
+      "discriminator": [211, 91, 104, 55, 232, 3, 144, 17],
+      "fields": [
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "auditorPubkey", "type": { "array": ["u8", 32] }, "index": false },
+        { "name": "admin", "type": "publicKey", "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "AuditorRotated",
+      "discriminator": [142, 52, 0, 198, 242, 67, 198, 79],
+      "fields": [
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "oldPubkey", "type": { "array": ["u8", 32] }, "index": false },
+        { "name": "newPubkey", "type": { "array": ["u8", 32] }, "index": false },
+        { "name": "timestamp", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "MixRoundOpened",
+      "discriminator": [36, 218, 92, 12, 44, 201, 130, 49],
+      "fields": [
+        { "name": "round", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "denomination", "type": "u64", "index": false },
+        { "name": "capacity", "type": "u8", "index": false },
+        { "name": "openedAt", "type": "i64", "index": false }
+      ]
+    },
+    {
+      "name": "MixCommitted",
+      "discriminator": [120, 90, 100, 82, 177, 34, 58, 6],
+      "fields": [
+        { "name": "round", "type": "publicKey", "index": false },
+        { "name": "participant", "type": "publicKey", "index": false },
+        { "name": "commitment", "type": { "array": ["u8", 32] }, "index": false },
+        { "name": "index", "type": "u8", "index": false }
+      ]
+    },
+    {
+      "name": "MixRevealed",
+      "discriminator": [221, 78, 22, 103, 99, 201, 19, 146],
+      "fields": [
+        { "name": "round", "type": "publicKey", "index": false },
+        { "name": "participant", "type": "publicKey", "index": false },
+        { "name": "index", "type": "u8", "index": false }
+      ]
+    },
+    {
+      "name": "MixSettled",
+      "discriminator": [203, 112, 7, 210, 9, 149, 88, 200],
+      "fields": [
+        { "name": "round", "type": "publicKey", "index": false },
+        { "name": "participants", "type": "u8", "index": false },
+        { "name": "settledAt", "type": "i64", "index": false }
+      ]
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "AmountBelowDustFloor", "msg": "amount is below the dust-free quantization unit" },
+    { "code": 6001, "name": "AmountNotAligned", "msg": "amount is not aligned to the dust-free unit" },
+    { "code": 6002, "name": "MintMissingConfidentialExt", "msg": "mint does not have the Token-2022 confidential transfer extension" },
+    { "code": 6003, "name": "MintWrongProgramOwner", "msg": "mint owner is not the Token-2022 program" },
+    { "code": 6004, "name": "AccountNotConfidential", "msg": "token account is not a confidential account for the given mint" },
+    { "code": 6005, "name": "AccountOwnerMismatch", "msg": "token account owner does not match the signer" },
+    { "code": 6006, "name": "InvalidCiphertext", "msg": "supplied ElGamal ciphertext is malformed" },
+    { "code": 6007, "name": "RangeProofVerificationFailed", "msg": "range proof verification failed via zk-token-proof CPI" },
+    { "code": 6008, "name": "EqualityProofVerificationFailed", "msg": "equality proof verification failed via zk-token-proof CPI" },
+    { "code": 6009, "name": "PubkeyValidityProofFailed", "msg": "pubkey validity proof verification failed via zk-token-proof CPI" },
+    { "code": 6010, "name": "ZeroBalanceProofFailed", "msg": "zero balance proof verification failed via zk-token-proof CPI" },
+    { "code": 6011, "name": "AuditorEntryMissing", "msg": "auditor registration is required for this mint but was not provided" },
+    { "code": 6012, "name": "AuditorMismatch", "msg": "auditor public key does not match the registered entry" },
+    { "code": 6013, "name": "AuditorRotationTooSoon", "msg": "auditor rotation attempted before the cooldown period elapsed" },
+    { "code": 6014, "name": "BurnerTtlOutOfRange", "msg": "burner TTL is outside the allowed range" },
+    { "code": 6015, "name": "BurnerExpired", "msg": "burner has expired and may no longer be used" },
+    { "code": 6016, "name": "BurnerAlreadyRegistered", "msg": "burner is already registered for this owner at the requested seed" },
+    { "code": 6017, "name": "BurnerCapReached", "msg": "burner registry cap for this owner has been reached" },
+    { "code": 6018, "name": "MixBelowMinimum", "msg": "mix round requires a minimum number of participants" },
+    { "code": 6019, "name": "MixRoundFull", "msg": "mix round is full, cannot accept more participants" },
+    { "code": 6020, "name": "MixNotInCommit", "msg": "mix round is not in the commit phase" },
+    { "code": 6021, "name": "MixNotInReveal", "msg": "mix round is not in the reveal phase" },
+    { "code": 6022, "name": "MixRevealMismatch", "msg": "mix reveal does not match the prior commitment" },
+    { "code": 6023, "name": "MixRevealTimeout", "msg": "mix round reveal window has elapsed, round aborted" },
+    { "code": 6024, "name": "MixDenominationMismatch", "msg": "mix denomination does not match the round configuration" },
+    { "code": 6025, "name": "MixAlreadyCommitted", "msg": "participant already committed in this round" },
+    { "code": 6026, "name": "MixNotCommitted", "msg": "participant never committed, cannot reveal" },
+    { "code": 6027, "name": "NotAdmin", "msg": "the caller is not the protocol admin" },
+    { "code": 6028, "name": "Paused", "msg": "protocol has been paused by the admin" },
+    { "code": 6029, "name": "UnexpectedProofContext", "msg": "provided proof context account does not belong to the expected program" },
+    { "code": 6030, "name": "ConfidentialTransferDisabled", "msg": "calling instruction requires confidential_transfer feature to be enabled on the mint" },
+    { "code": 6031, "name": "NothingToApply", "msg": "apply pending requires a non-zero pending counter" },
+    { "code": 6032, "name": "WithdrawExceedsAvailable", "msg": "withdraw amount exceeds decrypted available balance" },
+    { "code": 6033, "name": "ProtocolVersionMismatch", "msg": "protocol version stored on-chain does not match program expectations" }
+  ]
+}
