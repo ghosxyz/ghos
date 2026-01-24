@@ -160,3 +160,5 @@ pub mod ghos {
         instructions::mix_settle::handler(ctx)
     }
 }
+
+// feat: lib.rs wire create_burner + destroy_burner
