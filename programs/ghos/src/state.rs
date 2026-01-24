@@ -181,3 +181,5 @@ const _: () = {
     assert!(MIX_MAX_PARTICIPANTS <= u8::MAX);
     assert!(BURNER_REGISTRY_CAP_PER_OWNER <= u16::MAX);
 };
+
+// refactor: expose burner entry PDA and bump in state
