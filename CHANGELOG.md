@@ -69,3 +69,5 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - SDK client, WASM ElGamal proof generator hook
 - Anchor 0.29.0 based program, localnet tests
 - CI workflow with fmt + build + secret scan
+
+<!-- chore: v0.2.0 CHANGELOG entry -->
