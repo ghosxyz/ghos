@@ -162,3 +162,5 @@ pub mod ghos {
 }
 
 // feat: lib.rs wire create_burner + destroy_burner
+
+// feat: lib.rs wire the four mix instructions
