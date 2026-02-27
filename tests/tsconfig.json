@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "../",
+    "baseUrl": "../",
+    "types": ["mocha", "chai", "node"],
+    "paths": {
+      "@ghos/sdk": ["sdk/src/index"],
+      "@ghos/sdk/*": ["sdk/src/*"]
+    }
+  },
+  "include": ["./**/*.ts", "../sdk/src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "../target"]
+}
