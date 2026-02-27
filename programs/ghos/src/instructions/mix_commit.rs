@@ -68,3 +68,5 @@ pub fn handler(
     });
     Ok(())
 }
+
+// refactor: consolidate mix_commit PDA seed derivation
