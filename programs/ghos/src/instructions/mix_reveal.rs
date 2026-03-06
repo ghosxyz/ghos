@@ -67,3 +67,5 @@ pub fn handler(
     });
     Ok(())
 }
+
+// perf: avoid redundant borsh decode in mix_reveal
