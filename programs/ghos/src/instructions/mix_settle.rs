@@ -61,3 +61,5 @@ pub fn handler(ctx: Context<MixSettleAccounts>) -> Result<()> {
     });
     Ok(())
 }
+
+// style: rustfmt pass on all new instruction handlers
