@@ -71,3 +71,5 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - CI workflow with fmt + build + secret scan
 
 <!-- chore: v0.2.0 CHANGELOG entry -->
+
+<!-- chore: v0.3.0 CHANGELOG entry -->
