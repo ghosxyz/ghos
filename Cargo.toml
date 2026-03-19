@@ -41,3 +41,5 @@ opt-level = 3
 opt-level = 3
 incremental = false
 codegen-units = 1
+
+# deps: bump anchor-lang from 0.29.0 to 0.30.1
