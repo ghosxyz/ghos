@@ -1,0 +1,31 @@
+name: devnet integration
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  devnet:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - name: write devnet keypair
+        run: |
+          mkdir -p ~/.config/solana
+          echo "$DEVNET_KEYPAIR" > ~/.config/solana/id.json
+        env:
+          DEVNET_KEYPAIR: ${{ secrets.DEVNET_KEYPAIR }}
+        continue-on-error: true
+      - name: devnet smoke
+        run: yarn ts-node tests/devnet.test.ts
+        env:
+          GHOS_CLUSTER: devnet
+          GHOS_RPC_URL: https://api.devnet.solana.com
+        continue-on-error: true
