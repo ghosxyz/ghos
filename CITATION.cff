@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "ghos: Solana privacy OS"
+message: "If you use ghos in research, please cite it as below."
+type: software
+version: 0.4.1
+date-released: "2026-04-25"
+authors:
+  - name: "ghos.xyz core"
+url: "https://github.com/ghosxyz/ghos"
+repository-code: "https://github.com/ghosxyz/ghos"
+license: MIT
+keywords:
+  - solana
+  - privacy
+  - token-2022
+  - confidential-transfer
+  - zero-knowledge
+  - bulletproofs
+  - elgamal
