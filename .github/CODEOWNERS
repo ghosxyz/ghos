@@ -1,0 +1,14 @@
+# Default owners for everything
+* @ghosxyz
+
+# On-chain program
+/programs/ @ghosxyz
+
+# Client SDK
+/sdk/ @ghosxyz
+
+# Python CLI
+/cli/ @ghosxyz
+
+# CI and release
+/.github/ @ghosxyz
