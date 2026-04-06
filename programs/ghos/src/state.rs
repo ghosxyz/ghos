@@ -183,3 +183,5 @@ const _: () = {
 };
 
 // refactor: expose burner entry PDA and bump in state
+
+// perf: bytemuck zero-copy on GhosConfig reads
