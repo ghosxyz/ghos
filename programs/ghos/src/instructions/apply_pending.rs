@@ -65,3 +65,5 @@ pub fn handler(
     });
     Ok(())
 }
+
+// fix: apply_pending rejects zero expected_pending_counter
