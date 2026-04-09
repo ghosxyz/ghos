@@ -85,3 +85,5 @@ pub fn assert_len(actual: usize, expected: usize, err: GhosError) -> Result<()> 
 }
 
 // refactor: collapse validation helpers into single module
+
+// fix: dust-free padding miscalc below rent floor
