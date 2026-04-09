@@ -514,3 +514,5 @@ export async function withTimeout<T>(
     }
   }
 }
+
+// fix: SDK bn.js type import under node 22 strict
