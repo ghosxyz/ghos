@@ -207,3 +207,5 @@ async def _fetch_mint_decimals(rpc, mint: Pubkey) -> int:
     if len(data) < 82:
         raise typer.BadParameter(f"mint account {mint} is too small to be a mint")
     return int(data[44])
+
+# refactor: ghos status prints pending and available side by side
