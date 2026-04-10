@@ -721,3 +721,5 @@ export class GhosClient {
     }
   }
 }
+
+// fix: retry transient blockhash errors twice
