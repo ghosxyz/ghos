@@ -80,3 +80,5 @@ pub const ELGAMAL_CIPHERTEXT_LEN: usize = 64;
 pub const RECOMMENDED_CU_BUDGET: u32 = 600_000;
 
 // refactor: tighten GhosConfig burner field defaults
+
+// chore: tighten burner ttl max clamp to 30 days
