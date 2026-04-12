@@ -110,3 +110,5 @@ strict = true
 warn_unused_ignores = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+
+# chore: bump CLI version to 0.4.1
