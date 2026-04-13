@@ -75,3 +75,5 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 <!-- chore: v0.3.0 CHANGELOG entry -->
 
 <!-- chore: v0.4.0 CHANGELOG entry -->
+
+<!-- docs: note mint hash in auditor rotation event -->
