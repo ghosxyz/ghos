@@ -295,3 +295,5 @@ MIT. See [LICENSE](LICENSE).
 - Docs: [ghos.xyz/docs/](https://ghos.xyz/docs/)
 - Program ID (devnet): `EnKo8EbfJkani8UePTmAVPzdCZM8vMEYYkjTar4fwBPg`
 - Ticker: $GHOS
+
+<!-- docs: README quick start section refresh -->
