@@ -303,3 +303,5 @@ tests in sync with the program's account layout.
 - The `PROTOCOL_VERSION` constant in `constants.rs` is the authoritative
   pin; the SDK and CLI refuse to talk to a deployed program whose
   GhosConfig.version disagrees with the SDK's bundled `PROTOCOL_VERSION`.
+
+<!-- docs: clarify CPI example in integration doc -->
