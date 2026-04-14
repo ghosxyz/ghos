@@ -492,3 +492,5 @@ describe("ghos :: CoinJoin mix rounds", () => {
     await sleep(50);
   });
 });
+
+// test: widen mix abort path coverage
