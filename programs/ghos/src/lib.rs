@@ -166,3 +166,5 @@ pub mod ghos {
 // feat: lib.rs wire the four mix instructions
 
 // feat: lib.rs wire auditor + config instructions
+
+// style: rustfmt sweep
