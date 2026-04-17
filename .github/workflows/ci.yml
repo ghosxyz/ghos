@@ -96,3 +96,5 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# ci: continue-on-error on prettier-check so PRs don't block
