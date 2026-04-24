@@ -148,7 +148,7 @@ doesn't race you to the withdraw.
 
 ## 20. Is there a token launch schedule?
 
-See the project website (ghos.xyz) and X account (@ghosxyz) for
+See the project website (ghos.xyz) and X account (@ghosdotxyz) for
 launch-related announcements. The ghos privacy program does not
 require any token and is usable against any Token-2022 confidential
 mint independent of the launch schedule.

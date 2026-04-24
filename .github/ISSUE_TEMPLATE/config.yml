@@ -6,6 +6,6 @@ contact_links:
   - name: Security disclosure
     url: https://ghos.xyz/security
     about: Report a vulnerability privately. Do not use GitHub issues for this.
-  - name: X (Twitter)
-    url: https://x.com/ghosxyz
+  - name: X
+    url: https://x.com/ghosdotxyz
     about: Announcements and general discussion

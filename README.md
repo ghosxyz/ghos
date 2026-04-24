@@ -27,8 +27,8 @@
 </p>
 
 <p align="center">
-  <a href="https://x.com/ghosxyz">
-    <img src="https://img.shields.io/badge/X-@ghosxyz-0a0a0a?style=for-the-badge&logo=x&logoColor=white" alt="X" />
+  <a href="https://x.com/ghosdotxyz">
+    <img src="https://img.shields.io/badge/X-@ghosdotxyz-0a0a0a?style=for-the-badge&logo=x&logoColor=white" alt="X" />
   </a>
   <a href="https://ghos.xyz">
     <img src="https://img.shields.io/badge/Website-ghos.xyz-ff1249?style=for-the-badge&labelColor=0a0a0a" alt="Website" />
@@ -290,7 +290,7 @@ MIT. See [LICENSE](LICENSE).
 ## Links
 
 - Website: [ghos.xyz](https://ghos.xyz)
-- X: [@ghosxyz](https://x.com/ghosxyz)
+- X: [@ghosdotxyz](https://x.com/ghosdotxyz)
 - GitHub: [ghosxyz/ghos](https://github.com/ghosxyz/ghos)
 - Docs: [ghos.xyz/docs/](https://ghos.xyz/docs/)
 - Program ID (devnet): `EnKo8EbfJkani8UePTmAVPzdCZM8vMEYYkjTar4fwBPg`
