@@ -44,6 +44,8 @@
   </a>
 </p>
 
+CA: AvqpBxTXcWiUAPDWJ2uhuE9dp6JRyVQamrNy9D31pump
+
 ---
 
 ghos is a Solana privacy OS built on Token-2022 Confidential Balances. Balances are ElGamal-encrypted on-chain, transfer amounts never appear in plaintext, and range proofs are generated on the client using twisted ElGamal over Ristretto255 and bulletproofs. Optional per-mint auditor keys satisfy selective disclosure without leaking amounts to the public.
