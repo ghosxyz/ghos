@@ -365,5 +365,3 @@ describe("ghos :: auditor registry", () => {
     await sleep(50);
   });
 });
-
-// test: cover withdraw with auditor co-sign threshold

@@ -99,5 +99,3 @@ pub fn handler(
     });
     Ok(())
 }
-
-// fix: confidential_transfer auditor match when entry absent

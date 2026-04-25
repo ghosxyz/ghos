@@ -721,7 +721,3 @@ export class GhosClient {
     }
   }
 }
-
-// fix: retry transient blockhash errors twice
-
-// style: prettier sweep on SDK source

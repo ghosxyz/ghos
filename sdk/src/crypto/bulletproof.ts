@@ -459,5 +459,3 @@ export function proofSize(bitLength: number = RANGE_BIT_LENGTH): number {
   }
   return 32 * 4 + 32 * 3 + logN * 32 * 2 + 32 * 2;
 }
-
-// chore: minor cleanup in bulletproof client

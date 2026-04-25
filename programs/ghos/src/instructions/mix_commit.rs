@@ -68,7 +68,3 @@ pub fn handler(
     });
     Ok(())
 }
-
-// refactor: consolidate mix_commit PDA seed derivation
-
-// perf: preallocate vec capacity in mix_commit handler

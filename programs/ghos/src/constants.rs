@@ -78,7 +78,3 @@ pub const ELGAMAL_CIPHERTEXT_LEN: usize = 64;
 /// instructions. The program itself does not enforce this, but it is encoded
 /// here so the SDK and CLI agree.
 pub const RECOMMENDED_CU_BUDGET: u32 = 600_000;
-
-// refactor: tighten GhosConfig burner field defaults
-
-// chore: tighten burner ttl max clamp to 30 days

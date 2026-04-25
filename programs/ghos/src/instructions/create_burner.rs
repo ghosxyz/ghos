@@ -61,7 +61,3 @@ pub fn handler(ctx: Context<CreateBurner>, nonce: u64, ttl_seconds: i64) -> Resu
     });
     Ok(())
 }
-
-// fix: burner PDA seed collision on same-slot creates
-
-// fix: PDA seed collision when two burners share a slot

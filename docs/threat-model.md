@@ -274,5 +274,3 @@ graph TD
 
 Security issues go to `security@ghos.xyz`, not public GitHub issues.
 See `SECURITY.md` at the repo root.
-
-<!-- docs: fix typo in threat model -->

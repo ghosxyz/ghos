@@ -243,5 +243,3 @@ pub fn cpi_spl_transfer(
     invoke(&ix, &[source, destination, authority, token_program])?;
     Ok(())
 }
-
-// refactor: move token22 assertions into dedicated guards

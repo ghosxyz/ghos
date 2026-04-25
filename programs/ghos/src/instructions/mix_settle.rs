@@ -61,7 +61,3 @@ pub fn handler(ctx: Context<MixSettleAccounts>) -> Result<()> {
     });
     Ok(())
 }
-
-// style: rustfmt pass on all new instruction handlers
-
-// fix: CoinJoin settle double-count on odd participant sets

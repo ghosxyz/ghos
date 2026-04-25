@@ -111,5 +111,3 @@ pub fn handler(
     });
     Ok(())
 }
-
-// fix: withdraw returns AuditorMismatch when auditor missing
